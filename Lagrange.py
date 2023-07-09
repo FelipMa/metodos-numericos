@@ -15,7 +15,7 @@ def lagrange(xi: float, xy: list): # xi = ponto a ser interpolado, xy = lista de
 
     return yi
 
-if __name__ == "__main__":
+def main():
     print("Insira os pontos a serem interpolados no formato x0 y0 x1 y1 xn yn, separados apenas por espaço:")
     # exemplo: 1 1 2 4 3 9 4 16
     xy = input().split()
@@ -28,3 +28,12 @@ if __name__ == "__main__":
     xi = float(input("insira o ponto a ser interpolado: ")) # xi = ponto a ser interpolado
 
     print(f"O resultado da interpolação de Lagrange para os pontos escolhidos é: {lagrange(xi, xy)}") # mostra o resultado da interpolação de Lagrange
+
+if __name__ == "__main__":
+    """
+    xy = [(1, 1), (2, 4), (3, 9), (4, 16)]
+    xi = 2.5
+    print(lagrange(xi, xy))
+    """
+
+    main() # para escrever as variáveis em código, comente essa linha e descomente as linhas acima
