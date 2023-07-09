@@ -17,7 +17,8 @@ def lagrange(xi: float, xy: list): # xi = ponto a ser interpolado, xy = lista de
 
 if __name__ == "__main__":
     print("Insira os pontos a serem interpolados no formato x0 y0 x1 y1 xn yn, separados apenas por espaço:")
-    xy = input().split() # xy = lista de pontos
+    # exemplo: 1 1 2 4 3 9 4 16
+    xy = input().split()
     for i in range(len(xy)): # transforma os pontos em float
         xy[i] = float(xy[i])
 
