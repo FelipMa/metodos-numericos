@@ -36,4 +36,4 @@ if __name__ == "__main__":
     print(lagrange(xi, xy))
     """
 
-    main() # para escrever as variáveis em código, comente essa linha e descomente as linhas acima
+    main() # para escrever as variáveis pelo código, comente essa linha e descomente as linhas acima

@@ -125,4 +125,4 @@ if __name__ == "__main__":
     print("x = ", x)
     """
 
-    main() # para escrever as matrizes e vetores no código, comente essa linha e descomente as linhas acima
+    main() # para escrever as matrizes e vetores pelo código, comente essa linha e descomente as linhas acima
