@@ -1,4 +1,4 @@
-def jacobi(A, b, tol=1e-6, maxIt=100):
+def seidel(A, b, tol=1e-6, maxIt=100):
     # A = matriz de coeficientes
     # b = vetor de termos independentes
     n = len(A) # tamanho da matriz (n x n)
@@ -11,7 +11,7 @@ def jacobi(A, b, tol=1e-6, maxIt=100):
 
             for j in range(n): # para cada elemento da linha atual (coluna)
                 if j != i: # se não for a diagonal
-                    elem.append(A[i][j] * x[j]) # multiplica elemento da linha por elemento do chute, e adiciona na lista de elementos
+                    elem.append(A[i][j] * x_new[j]) # multiplica elemento da linha por elemento do chute atualizado, e adiciona na lista de elementos
 
             x_new[i] = (b[i] - sum(elem)) / A[i][i] # calcula o novo valor de x, e adiciona na lista de novos valores de x
 
@@ -63,6 +63,21 @@ def convergenciaColunas(A):
             return False
     return True
 
+def criterioSassenfeld(A):
+    # verifica se a matriz A atende ao critério de Sassenfeld
+    # se atender, retorna True, se não, retorna False
+    n = len(A)
+    beta = [1] * n # vetor de betas começa com 1 em todas as posições
+    for i in range(n):
+        soma = 0
+        for j in range(n):
+            if i != j:
+                soma += beta[j] * (abs(A[i][j]) / abs(A[i][i]))
+        beta[i] = soma
+    if max(beta) < 1:
+        return True
+    return False
+
 def calcularDeterminante(A):
     # calcula o determinante de uma matriz, de forma recursiva
     # utiliza o método de Laplace
@@ -98,9 +113,15 @@ def main():
     if conv:
         print("A matriz converge")
     else:
-        print("A matriz não atende aos critérios de convergência")
+        print("A matriz não atende aos critérios de convergência por linhas e/ou colunas")
 
-    x = jacobi(A, b, tol, maxIt)
+    convSassenfeld = criterioSassenfeld(A)
+    if convSassenfeld:
+        print("A matriz atende ao critério de Sassenfeld")
+    else:
+        print("A matriz não atende ao critério de Sassenfeld")
+
+    x = seidel(A, b, tol, maxIt)
     print("x = ", x)
             
 
@@ -120,7 +141,7 @@ if __name__ == "__main__":
         else:
             print("A matriz não atende aos critérios de convergência")
 
-        x = jacobi(A, b, tol, maxIt)
+        x = seidel(A, b, tol, maxIt)
         print("x = ", x)
     """
 
